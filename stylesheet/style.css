@@ -1,7 +1,9 @@
 body{
 	font-family: 'Ubuntu', sans-serif;
 	font-size:2em;
+	
 	background-image:url(../images/bg.jpg);
+
 	background-size:cover;
 	right:0;
 	left:0;
@@ -24,8 +26,8 @@ ul{
 .logout{
 	background-color:lightblue;
 	position:absolute;
-	right:0;
-	top:0;
+	right:10px;
+	top:10px;
 }
 #title{
 
@@ -42,4 +44,14 @@ ul{
 }
 .line{
 	display:inline;
+}
+th{
+	color: blue;
+}
+tr > td:first-child {
+ text-align: left;
+}
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
 }
