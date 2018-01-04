@@ -24,6 +24,7 @@ if (mysqli_connect_errno()) {
 mysqli_close($link);
 ?>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,4 +44,3 @@ mysqli_close($link);
 
 	</body>
 </html>
-
