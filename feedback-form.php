@@ -1,4 +1,26 @@
-<?php ?>
+<?php 
+$host = "localhost";
+$username = "id4166117_student";
+$password = "student";
+$dbName = "id4166117_student";
+$link = mysqli_connect($host,$username,$password,$dbName);
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    
+}
+
+/* Select queries return a resultset */
+   $query = "SELECT  * from student ";
+  	$results = mysqli_query($link, $query);
+
+/* Add form data to the database
+    mysqli_close($link);
+
+*/
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>

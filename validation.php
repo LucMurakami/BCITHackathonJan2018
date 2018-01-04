@@ -3,11 +3,15 @@ session_start();
 
 $errors = array();
 
-$database = mysqli_connect("localhost","id4166117_student","student","id4166117_student");
+$host = "localhost";
+$username = "id4166117_student";
+$password = "student";
+$dbName = "id4166117_student";
+$link = mysqli_connect($host,$username,$password,$dbName);
 
 if (isset($_POST['login_user'])) {
-    $loginID = mysqli_real_escape_string($db, $_POST['loginID']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $loginID = mysqli_real_escape_string($link, $_POST['loginID']);
+    $password = mysqli_real_escape_string($link, $_POST['password']);
     
     if (empty($studentID)) {
         array_push($errors, "");
@@ -18,18 +22,22 @@ if (isset($_POST['login_user'])) {
     
     if (count($errors) == 0) {
         $query = "SELECT * FROM student WHERE studentID='$loginID' AND password='$password'";
-        $results = mysqli_query($db, $query);
+        $results = mysqli_query($link, $query);
         if (mysqli_num_rows($results == 1)) {
             $_SESSION['studentID'] = $studentID;
             header('location: student_index.php');
-        } else if {
+        } else {
             $query = "SELECT * FROM teacher WHERE teacherID='$loginID' AND password='$password'";
-            $results = mysqli_query($db, $query);
+            $results = mysqli_query($link, $query);
             if (mysqli_num_rows($results == 1)) {
                 $_SESSION['studentID'] = $studentID;
                 header('location: teacher_index.php');
+            } else {
+                header('location: login.php');
+            }
         }
     }
+    mysqli_close($link);
 }
 ?>
     

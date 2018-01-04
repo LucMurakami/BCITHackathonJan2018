@@ -18,7 +18,7 @@ session_start();
 	<div class="container text-center">
 		<h1 id="title">Please Login</h1>
 			<div id="group">
-				<form action="authenticate.php" method="post">
+				<form action="validation.php" method="post">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 							Student ID: <input type="text" name="studentID" placeholder="Student ID">
