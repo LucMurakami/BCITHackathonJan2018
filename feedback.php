@@ -62,7 +62,7 @@ if (mysqli_connect_errno()) {
 			<div class="logout">
                 <a class="btn btn-info" href="logout.php">Logout</a>
             </div>
-			<form action="feedback-form.php" method="post" id="question" onsubmit="return radioValidate()">
+			<form action="feedbackValidation.php" method="post" id="question" onsubmit="return radioValidate()">
 				<h1 id="title">Teacher Feedback Survey</h1>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -291,5 +291,4 @@ if (mysqli_connect_errno()) {
 		</div>
 		
 	</body>
-</html>
 </html>
