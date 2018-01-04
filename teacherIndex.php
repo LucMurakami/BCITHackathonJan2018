@@ -47,3 +47,4 @@ if (mysqli_connect_errno()) {
 		</div>
 	</body>
 </html>
+
