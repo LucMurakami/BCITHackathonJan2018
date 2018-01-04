@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
 	<head>
 		<title>Review</title>
@@ -28,4 +29,13 @@
 			</div>
 		</div>
 	</body>
+=======
+<html lang="en">
+<head></head>
+
+<body>
+Hello!
+</body>
+
+>>>>>>> 778e358d7373f11835b4238b681543a729381161
 </html>
