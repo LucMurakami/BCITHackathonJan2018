@@ -21,13 +21,13 @@ if (isset($_POST['login_user'])) {
     }
     
     if (count($errors) == 0) {
-        $query = "SELECT * FROM student WHERE studentID='$loginID' AND password='$password'";
+        $query = "SELECT * FROM student WHERE student_id='$loginID' AND password='$password'";
         $results = mysqli_query($link, $query);
         if (mysqli_num_rows($results == 1)) {
             $_SESSION['studentID'] = $studentID;
             header('location: student_index.php');
         } else {
-            $query = "SELECT * FROM teacher WHERE teacherID='$loginID' AND password='$password'";
+            $query = "SELECT * FROM teacher WHERE teacher_id='$loginID' AND password='$password'";
             $results = mysqli_query($link, $query);
             if (mysqli_num_rows($results == 1)) {
                 $_SESSION['studentID'] = $studentID;
