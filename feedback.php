@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
 }
 
 /* Select queries return a resultset */
-   $query = "SELECT  * from student ";
+    $query = "SELECT  * from student ";
   	$results = mysqli_query($link, $query);
 
 /* Add form data to the database

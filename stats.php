@@ -16,13 +16,11 @@ if (mysqli_connect_errno()) {
 
     $query = "SELECT * FROM feedback WHERE course-teacher_id = ";
   	$results = mysqli_query($link, $query);
-  	echo "<b>student</b> <br/>";
-  	while($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-        {
-            echo $row["student_id"]." ",$row["password"]."<br />";
-        }
+
+    function select_response($var) {
+    $feedback = $var;
         
-    switch (feedback) {
+    switch ($feedback) {
         case 1: 
             return "Strongly Agree";
             break;
@@ -39,6 +37,7 @@ if (mysqli_connect_errno()) {
             return "Strongly Disagree";
             break;
         default: return "";
+    }
     }
 
 mysqli_close($link);
@@ -58,7 +57,6 @@ mysqli_close($link);
 			<div class="logout">
                 <a class="btn btn-info" href="logout.php">Logout</a>
             </div>
-			<form action="feedback-form.php" method="post" id="question" onsubmit="return radioValidate()">
 				<h1 id="title">Student Feedback Survey</h1>
 				<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -67,26 +65,15 @@ mysqli_close($link);
 							<table class = "table">
 								
 									<col width = "50%">
-									<col width = "10%">
-									<col width = "10%">
-									<col width = "10%">
-									<col width = "10%">
-									<col width = "10%">
-								
+									<col width = "25%">
+									<col width = "25%">
 								<tr >
 									<th class = "text-center">Questions
 									</th>
 									<th class = "text-center">Fb1
 									</th>
 									<th>Fb2
-									</th>
-									<th>#
-									</th>
-									<th>#
-									</th>
-									<th>#
-									</th>
-									
+									</th>									
 								</tr>
 								<tr>
 									<td>
@@ -97,16 +84,6 @@ mysqli_close($link);
 									<td>
 										 Disagree
 									</td>
-									<td>
-										 <input type="radio" name="answer1" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer1" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer1" value="5"> <br />
-									</td>
-
 								</tr>
 								<tr>
 									<td>
@@ -117,15 +94,6 @@ mysqli_close($link);
 									</td>
 									<td>
 										 Strongly Agree
-									</td>
-									<td>
-										 <input type="radio" name="answer2" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer2" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer2" value="5"> <br />
 									</td>
 								</tr>
 								<tr>
@@ -138,15 +106,6 @@ mysqli_close($link);
 									<td>
 										 Strongly Agree
 									</td>
-									<td>
-										 <input type="radio" name="answer3" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer3" value="4">&nbsp;&nbsp;
-									</td>
-									<td>	
-										 <input type="radio" name="answer3" value="5"> <br />
-									</td>
 								</tr>
 								<tr>
 									<td>
@@ -157,15 +116,6 @@ mysqli_close($link);
 									</td>
 									<td>
 										 Agree
-									</td>
-									<td>
-										 <input type="radio" name="answer4" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer4" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer4" value="5"> <br />
 									</td>
 								</tr>
 								<tr>
@@ -178,15 +128,6 @@ mysqli_close($link);
 									<td>
 										 Agree
 									</td>
-									<td>
-										 <input type="radio" name="answer5" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer5" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer5" value="5"> <br />
-									</td>
 								</tr>
 								<tr>
 									<td>
@@ -198,15 +139,6 @@ mysqli_close($link);
 									<td>
 										 Agree
 									</td>
-									<td>
-										 <input type="radio" name="answer6" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer6" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer6" value="5"> <br />
-									</td>
 								</tr>
 								<tr>
 									<td>
@@ -217,15 +149,6 @@ mysqli_close($link);
 									</td>
 									<td>
 										 Strongly Agree
-									</td>
-									<td>
-										 <input type="radio" name="answer7" value="3">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer7" value="4">&nbsp;&nbsp;
-									</td>
-									<td>
-										 <input type="radio" name="answer7" value="5"> <br />
 									</td>
 								</tr>
 								<tr>
@@ -251,8 +174,18 @@ mysqli_close($link);
 										 Neutral
 									</td>
 								</tr>
-								
-						
+                                <tr >
+                                    <td>
+                                        <label>Comments Fb1</label>
+                                    </td>
+                                    <td colspan="2">Text</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Comments Fb2</label>
+                                    </td>
+                                    <td colspan="2">Text</td>
+                                </tr>
 							</table>
 						<br />
 							<div class="text-center">
@@ -265,9 +198,6 @@ mysqli_close($link);
 						</div>
 					</div>
 			</div>
-
-		</form>
 		</div>
-		
 	</body>
 </html>
