@@ -7,25 +7,21 @@ session_start();
 	<head>
 		<title>Login</title>
 		<meta charset="utf-8" />
-		<link href="style.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="stylesheet/style.css" rel="stylesheet">
 
 	</head>
 
 
 	<body>
-		<div class="container" id="group">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				<h3>Please Login</h3>
-				<br />
-			</div>
-
-			<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<form action="validation.php" method="post">
+	<div class="container text-center">
+		<h1 id="title">Please Login</h1>
+			<div id="group">
+				<form action="authenticate.php" method="post">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-							Student ID: <input type="text" name="loginID" placeholder="Login ID">
+							Student ID: <input type="text" name="studentID" placeholder="Student ID">
 						</div>
 					</div>
 					<br />
@@ -37,14 +33,11 @@ session_start();
 					<br />
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-							<input type="submit" class="btn btn-default">
+							<input type="submit" class="btn btn-default" >
 						</div>
 					</div>
 				</form>
-			</section>
+			</div>
 		</div>
-
-
-
 	</body>
 </html>
