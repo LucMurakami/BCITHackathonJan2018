@@ -14,7 +14,7 @@ if (mysqli_connect_errno()) {
 
 /* Select queries return a resultset */
 
-    $query = "SELECT $_SESSION['loginID'] FROM teacher ";
+    $query = "SELECT * FROM teacher WHERE teacher_id = '$_SESSION[loginID]'";
   	$results = mysqli_query($link, $query);
 ?>
 
@@ -32,12 +32,11 @@ if (mysqli_connect_errno()) {
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 					<h3>Profile</h3>
-					<input type="submit" name="logout" value="Logout">
+                    <a href="logout.php" class="btn btn-default" type="submit" name="logout" value="Logout">Logout</a>
 
 					<table>
                         <?php while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher1_id"]</a></td></tr>;
-                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher2_id"]</a></td></tr>;
+                            echo "<tr><td><a href='stats.php?=".$row['course_id'].">".$row["course_id"]."</a></td></tr>";
                         }
                             mysqli_close($link);
                         ?>
