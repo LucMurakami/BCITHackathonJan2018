@@ -3,10 +3,10 @@ session_start();
 
 $errors = array();
 
-$database = mysqli_connect('localhost', 'root', '',  'registration');
+$database = mysqli_connect("localhost","id4166117_student","student","id4166117_student");
 
 if (isset($_POST['login_user'])) {
-    $loginID = mysqli_real_escape_string($db, $_POST['studentID']);
+    $loginID = mysqli_real_escape_string($db, $_POST['loginID']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
     
     if (empty($studentID)) {
@@ -27,7 +27,7 @@ if (isset($_POST['login_user'])) {
             $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results == 1)) {
                 $_SESSION['studentID'] = $studentID;
-                header('location: student_index.php');
+                header('location: teacher_index.php');
         }
     }
 }

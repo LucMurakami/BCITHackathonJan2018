@@ -1,7 +1,7 @@
 <?php 
     session_start(); 
 
-    $database = mysqli_connect('localhost', 'root', '',  'registration');
+    $database = new mysqli('localhost', 'root', '',  'studentEval');
 
     if (!isset($_SESSION['username'])) {
     	$_SESSION['msg'] = "You must log in first";
