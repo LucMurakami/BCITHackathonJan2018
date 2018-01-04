@@ -30,12 +30,13 @@ if (mysqli_connect_errno()) {
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 					<h3>Profile</h3>
-                    <a href="logout.php" class="btn btn-default" type="submit" name="logout" value="Logout">Logout</a>
-
+                    <div class="logout">
+                        <a class="btn btn-info" href="logout.php">Logout</a>
+                    </div>
 					<table>
                         <?php while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-                            echo "<tr><td><a href='formfeedback.php?=".$row['course-teacher1_bool'].">".$row["course-teacher1_id"]."</a></td></tr>";
-                            echo "<tr><td><a href='formfeedback.php?=".$row['course-teacher2_bool'].">".$row["course-teacher2_id"]."</a></td></tr>";
+                            echo "<tr><td><a href='feedback-form.php?=".$row['course-teacher1_bool'].">".$row["course-teacher1_id"]."</a></td></tr>";
+                            echo "<tr><td><a href='feedback-form.php?=".$row['course-teacher2_bool'].">".$row["course-teacher2_id"]."</a></td></tr>";
                         }
                             mysqli_close($link);
                         ?>
