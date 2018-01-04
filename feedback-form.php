@@ -45,16 +45,24 @@ if (mysqli_connect_errno()) {
                 var answer = [answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9]
                 var validate = false;
                 
-                for (var i = 1; i <= 9; i++) {
-                    while (!false && answer[i]
-                
+                for (var i = 0; i < 9; i++) {
+                    var j = 0;
+                    while (!validate && j < answer[i].length) {
+                        if (answer[i][j].checked) validate = true;
+                        j++;
+                    }
+                    if (!validate) alert("You must answer all questions");
+                    return validate;
+                }
             }
         </script>
 	</head>
 	<body>
 		<div class="container text-center">
-			<input type="submit" name="logout" value="Logout" class="logout">
-			<form action="feedback-form.php" method="post" id="question">
+			<div class="logout">
+                <a class="btn btn-info" href="logout.php">Logout</a>
+            </div>
+			<form action="feedback-form.php" method="post" id="question" onsubmit="return radioValidate()">
 				<h1 id="title">Teacher Feedback Survey</h1>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
