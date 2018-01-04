@@ -13,35 +13,14 @@ if (mysqli_connect_errno()) {
 }
 
 /* Select queries return a resultset */
-
-    $query = "SELECT * FROM feedback WHERE course-teacher_id = ";
+   $query = "SELECT  * from student ";
   	$results = mysqli_query($link, $query);
-  	echo "<b>student</b> <br/>";
-  	while($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-        {
-            echo $row["student_id"]." ",$row["password"]."<br />";
-        }
-        
-    switch (feedback) {
-        case 1: 
-            return "Strongly Agree";
-            break;
-        case 2: 
-            return "Agree";
-            break;
-        case 3: 
-            return "Neutral";
-            break;
-        case 4: 
-            return "Disagree";
-            break;
-        case 5: 
-            return "Strongly Disagree";
-            break;
-        default: return "";
-    }
 
-mysqli_close($link);
+/* Add form data to the database
+    mysqli_close($link);
+
+*/
+
 ?>
 
 <!DOCTYPE html>
@@ -52,17 +31,42 @@ mysqli_close($link);
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<link href="stylesheet/style.css" rel="stylesheet">
+        <script>
+            function radioValidate() {
+                var answer1 = document.getElementsByName("answer1");
+                var answer2 = document.getElementsByName("answer2");
+                var answer3 = document.getElementsByName("answer3");
+                var answer4 = document.getElementsByName("answer4");
+                var answer5 = document.getElementsByName("answer5");
+                var answer6 = document.getElementsByName("answer6");
+                var answer7 = document.getElementsByName("answer7");
+                var answer8 = document.getElementsByName("answer8");
+                var answer9 = document.getElementsByName("answer9");
+                var answer = [answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9]
+                var validate = false;
+                
+                for (var i = 0; i < 9; i++) {
+                    var j = 0;
+                    while (!validate && j < answer[i].length) {
+                        if (answer[i][j].checked) validate = true;
+                        j++;
+                    }
+                    if (!validate) alert("You must answer all questions");
+                    return validate;
+                }
+            }
+        </script>
 	</head>
 	<body>
 		<div class="container text-center">
 			<div class="logout">
                 <a class="btn btn-info" href="logout.php">Logout</a>
             </div>
-			<form action="feedback-form.php" method="post" id="question" onsubmit="return radioValidate()">
-				<h1 id="title">Student Feedback Survey</h1>
+			<form action="feedbackValidation.php" method="post" id="question" onsubmit="return radioValidate()">
+				<h1 id="title">Teacher Feedback Survey</h1>
 				<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                	
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						
 				<div id="group2">
 							<table class = "table">
 								
@@ -76,15 +80,15 @@ mysqli_close($link);
 								<tr >
 									<th class = "text-center">Questions
 									</th>
-									<th class = "text-center">Fb1
+									<th class = "text-center">Strongly Agree
 									</th>
-									<th>Fb2
+									<th>Agree
 									</th>
-									<th>#
+									<th>Neutral
 									</th>
-									<th>#
+									<th>Disagree
 									</th>
-									<th>#
+									<th>Strongly Disagree
 									</th>
 									
 								</tr>
@@ -92,10 +96,10 @@ mysqli_close($link);
 									<td>
 										<label>1) How passionate was the teacher about the course material?</label>&nbsp;&nbsp;</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer1" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Disagree
+										 <input type="radio" name="answer1" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer1" value="3">&nbsp;&nbsp;
@@ -113,10 +117,10 @@ mysqli_close($link);
 										<label>2) Did the instructor answer all questions that students had?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer2" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer2" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer2" value="3">&nbsp;&nbsp;
@@ -133,10 +137,10 @@ mysqli_close($link);
 										<label>3) Was the instructor's voice clear enough to understand?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Disagree
+										 <input type="radio" name="answer3" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer3" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer3" value="3">&nbsp;&nbsp;
@@ -153,10 +157,10 @@ mysqli_close($link);
 										<label>4) How useful was the instructor's office hours?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer4" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer4" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer4" value="3">&nbsp;&nbsp;
@@ -173,10 +177,10 @@ mysqli_close($link);
 										<label>5) How prepared was the instructor for class?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Neutral
+										 <input type="radio" name="answer5" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer5" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer5" value="3">&nbsp;&nbsp;
@@ -193,10 +197,10 @@ mysqli_close($link);
 										<label>6) Was the instructor on time for class?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer6" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer6" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer6" value="3">&nbsp;&nbsp;
@@ -213,10 +217,10 @@ mysqli_close($link);
 										<label>7) How useful was the course material?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer7" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Strongly Agree
+										 <input type="radio" name="answer7" value="2">&nbsp;&nbsp;
 									</td>
 									<td>
 										 <input type="radio" name="answer7" value="3">&nbsp;&nbsp;
@@ -233,22 +237,39 @@ mysqli_close($link);
 										<label>8) Was the teacher nice to the students?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer8" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Agree
+										 <input type="radio" name="answer8" value="2">&nbsp;&nbsp;
 									</td>
-
+									<td>
+										 <input type="radio" name="answer8" value="3">&nbsp;&nbsp;
+									</td>
+									<td>
+										 <input type="radio" name="answer8" value="4">&nbsp;&nbsp;
+									</td>
+									<td>
+										 <input type="radio" name="answer8" value="5"> <br />
+									</td>
 								</tr>
 								<tr>
 									<td>
 										<label>9) Were the exams fair?</label>&nbsp;&nbsp;
 									</td>
 									<td>
-										 Neutral
+										 <input type="radio" name="answer9" value="1">&nbsp;&nbsp;
 									</td>
 									<td>
-										 Neutral
+										 <input type="radio" name="answer9" value="2">&nbsp;&nbsp;
+									</td>
+									<td>
+										 <input type="radio" name="answer9" value="3">&nbsp;&nbsp;
+									</td>
+									<td>
+										 <input type="radio" name="answer9" value="4">&nbsp;&nbsp;
+									</td>
+									<td>
+										 <input type="radio" name="answer9" value="5"> <br />
 									</td>
 								</tr>
 								

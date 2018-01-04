@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head></head>
-
-<body>
-Hello!
-</body>
-
-</html>
+<?php
+header("location: login.php");
+?>

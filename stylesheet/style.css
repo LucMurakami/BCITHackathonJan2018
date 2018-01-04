@@ -1,0 +1,58 @@
+body{
+	font-family: 'Ubuntu', sans-serif;
+	font-size:2em;
+	
+	background-image:url(../images/bg.jpg);
+
+	background-size:cover;
+	right:0;
+	left:0;
+	top:0;
+	bottom:0;
+
+}
+#group{
+	background-color:rgba(252,250,244,0.7);
+	margin-top:0;
+	padding-top:10%;
+	padding-left:1%;
+	padding-right:1%;
+	padding-bottom:10%;
+}
+ul{
+	list-style:none;
+}
+
+.logout{
+/*	background-color:lightblue;*/
+	position:absolute;
+	right:0;
+	top:0;
+    padding: 5px;
+}
+#title{
+
+	color:white;
+	background-color:rgba(40, 38, 47, 0.7);
+	padding:3% 0;
+}
+#group2{
+	background-color:rgba(252,250,244,0.7);
+	padding-top:5%;
+	padding-left:1%;
+	padding-right:1%;
+	padding-bottom:1%;
+}
+.line{
+	display:inline;
+}
+th{
+	color: blue;
+}
+tr > td:first-child {
+ text-align: left;
+}
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
