@@ -14,14 +14,8 @@ if (mysqli_connect_errno()) {
 
 /* Select queries return a resultset */
 
-   $query1 = "select * from feedback where course-teacher_id = 'COMP1510-A0010110'";
+    $query = "SELECT $_SESSION['loginID'] FROM teacher ";
   	$results = mysqli_query($link, $query);
-  	echo "<b>student</b> <br/>";
-  	while($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-        {
-            echo $row["student_id"]." ",$row["password"]."<br />";
-        }
-mysqli_close($link);
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +27,24 @@ mysqli_close($link);
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<link href="stylesheet/style.css" rel="stylesheet">
 	</head>
-
-
-
 	<body>
-		<div class="container text-center">
-			<h1 id="title">Teacher</h1>
-		</div>
+		<div class="container">	
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<h3>Profile</h3>
+					<input type="submit" name="logout" value="Logout">
 
+					<table>
+                        <?php while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher1_id"]</a></td></tr>;
+                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher2_id"]</a></td></tr>;
+                        }
+                            mysqli_close($link);
+                        ?>
+                    </table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
 

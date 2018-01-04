@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
 
 /* Select queries return a resultset */
 
-    $query = "SELECT $_SESSION['studentID'] FROM student ";
+    $query = "SELECT $_SESSION['loginID'] FROM student ";
   	$results = mysqli_query($link, $query);
     
 ?>
@@ -34,8 +34,7 @@ if (mysqli_connect_errno()) {
 
 					<table>
                         <?php while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher1_id"]</a></td></tr>;
-                            echo <tr><td><a href="formfeedback.php?=$row["course-teacher1_bool"]">$row["course-teacher2_id"]</a></td></tr>;
+                            echo <tr><td><a href="stats.php?=$row["course-teacher1_bool"]">$row["course-teacher1_id"]</a></td></tr>;
                         }
                             mysqli_close($link);
                         ?>
