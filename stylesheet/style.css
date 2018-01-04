@@ -33,3 +33,13 @@ body{
 	background-color:rgba(40, 38, 47, 0.7);
 	padding:3% 0;
 }
+#group2{
+	background-color:rgba(252,250,244,0.7);
+	padding-top:5%;
+	padding-left:1%;
+	padding-right:1%;
+	padding-bottom:1%;
+}
+.line{
+	display:inline;
+}
