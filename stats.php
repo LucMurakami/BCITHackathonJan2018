@@ -14,8 +14,7 @@ if (mysqli_connect_errno()) {
 
 /* Select queries return a resultset */
 
-   $query = "SELECT  * from student ";
-   $query1 = "select * from feedback where course-teacher_id = 'COMP1510-A0010110'";
+    $query = "SELECT * FROM feedback WHERE course-teacher_id = ";
   	$results = mysqli_query($link, $query);
   	echo "<b>student</b> <br/>";
   	while($row = mysqli_fetch_array($results, MYSQLI_ASSOC))

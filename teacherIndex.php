@@ -37,7 +37,7 @@ if (mysqli_connect_errno()) {
                     </div>
 					<table>
                         <?php while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-                            echo "<tr><td><a href='stats.php?=".$row['course_id'].">".$row["course_id"]."</a></td></tr>";
+                            echo "<tr><td><a href='stats.php?course=".$row['course_id'].">".$row["course_id"]."</a></td></tr>";
                         }
                             mysqli_close($link);
                         ?>
