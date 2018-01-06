@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if(!isset($_SESSION['teacherID'])){
+    $_SESSION['errormsg'] = "Login First"; 
+    header("location:login.php");
+}
 
 $host = "localhost";
 $username = "id4166117_student";
@@ -11,33 +15,37 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     
 }
-
+$pull_id = $_GET["q"];
 /* Select queries return a resultset */
-
-    $query = "SELECT * FROM feedback WHERE course-teacher_id = ";
+   $query = "SELECT * FROM `feedback` WHERE `course-teacher_id` like '$pull_id'";
   	$results = mysqli_query($link, $query);
-
+  	$count = 0;
+  	$row;
+    while($temp = mysqli_fetch_array($results, MYSQLI_NUM)){
+       $row[$count] = $temp;
+       $count++;
+    }
     function select_response($var) {
     $feedback = $var;
         
-    switch ($feedback) {
-        case 1: 
-            return "Strongly Agree";
-            break;
-        case 2: 
-            return "Agree";
-            break;
-        case 3: 
-            return "Neutral";
-            break;
-        case 4: 
-            return "Disagree";
-            break;
-        case 5: 
-            return "Strongly Disagree";
-            break;
-        default: return "";
-    }
+        switch ($feedback) {
+            case 1: 
+                return "Strongly Agree";
+                break;
+            case 2: 
+                return "Agree";
+                break;
+            case 3: 
+                return "Neutral";
+                break;
+            case 4: 
+                return "Disagree";
+                break;
+            case 5: 
+                return "Strongly Disagree";
+                break;
+            default: return "";
+        }
     }
 
 mysqli_close($link);
@@ -54,10 +62,12 @@ mysqli_close($link);
 	</head>
 	<body>
 		<div class="container text-center">
-			<div class="logout">
-                <a class="btn btn-info" href="logout.php">Logout</a>
+			<div >
+                
             </div>
-				<h1 id="title">Student Feedback Survey</h1>
+				<h1 id="title">Student Feedback Survey
+				<a class="btn btn-info" href="logout.php" class="logout">Logout</a>
+				</h1>
 				<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 	
@@ -65,136 +75,132 @@ mysqli_close($link);
 							<table class = "table">
 								
 									<col width = "50%">
-									<col width = "25%">
-									<col width = "25%">
+									<col width = "16%">
+									<col width = "16%">
+									<col width = "16%">
 								<tr >
 									<th class = "text-center">Questions
 									</th>
-									<th class = "text-center">Fb1
-									</th>
-									<th>Fb2
-									</th>									
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      echo "<th class = 'text-center'>FB".($i + 1)."</th>";
+									  }
+									?>									
 								</tr>
 								<tr>
 									<td>
 										<label>1) How passionate was the teacher about the course material?</label>&nbsp;&nbsp;</td>
-									<td>
-										 Strongly Agree
-									</td>
-									<td>
-										 Disagree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][1];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>2) Did the instructor answer all questions that students had?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Agree
-									</td>
-									<td>
-										 Strongly Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][2];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>3) Was the instructor's voice clear enough to understand?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Strongly Disagree
-									</td>
-									<td>
-										 Strongly Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][3];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>4) How useful was the instructor's office hours?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Agree
-									</td>
-									<td>
-										 Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][4];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>5) How prepared was the instructor for class?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Neutral
-									</td>
-									<td>
-										 Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][5];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>6) Was the instructor on time for class?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Strongly Agree
-									</td>
-									<td>
-										 Agree
-									</td>
+								    <?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][6];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>7) How useful was the course material?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Strongly Agree
-									</td>
-									<td>
-										 Strongly Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][7];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
 								<tr>
 									<td>
 										<label>8) Was the teacher nice to the students?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Agree
-									</td>
-									<td>
-										 Agree
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][8];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 
 								</tr>
 								<tr>
 									<td>
 										<label>9) Were the exams fair?</label>&nbsp;&nbsp;
 									</td>
-									<td>
-										 Neutral
-									</td>
-									<td>
-										 Neutral
-									</td>
+									<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][9];
+									      echo "<td class = 'text-center'>".(select_response($data))."</td>";
+									  }
+									?>
 								</tr>
-                                <tr >
-                                    <td>
-                                        <label>Comments Fb1</label>
-                                    </td>
-                                    <td colspan="2">Text</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>Comments Fb2</label>
-                                    </td>
-                                    <td colspan="2">Text</td>
-                                </tr>
+								<?php
+									  for($i = 0; $i < $count; $i++){
+									      $data = $row[$i][10];
+        							        echo "<tr >
+                                                    <td>
+                                                        <label>Comments Fb".($i + 1)."</label>
+                                                    </td>
+                                                    <td colspan='".$count."'>$data</td>
+                                                </tr>";
+									  }
+									?>
+                                
 							</table>
 						<br />
-							<div class="text-center">
-							<label>Other Comments:</label>
-							<textarea rows="4" cols="10" class="form-control" name="comment" maxlength="250" form="question"></textarea>
-							<br />
-					
-							<input type="submit" name="submit" value="Submit">
-							</div>
+							
 						</div>
 					</div>
 			</div>

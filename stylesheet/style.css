@@ -24,11 +24,8 @@ ul{
 }
 
 .logout{
-/*	background-color:lightblue;*/
-	position:absolute;
-	right:0;
-	top:0;
-    padding: 5px;
+	background-color:lightblue;
+	text-align:right;
 }
 #title{
 
@@ -52,7 +49,11 @@ th{
 tr > td:first-child {
  text-align: left;
 }
+#something{
+    text-align: center;
+}
 .inactiveLink {
+    color:red;
    pointer-events: none;
    cursor: default;
 }

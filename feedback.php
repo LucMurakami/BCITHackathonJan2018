@@ -1,28 +1,12 @@
-<?php 
+<?php
 session_start();
-
-$host = "localhost";
-$username = "id4166117_student";
-$password = "student";
-$dbName = "id4166117_student";
-$link = mysqli_connect($host,$username,$password,$dbName);
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    
+if(!isset($_SESSION['studentID'])){
+    $_SESSION['errormsg'] = "Login First"; 
+    header("location:login.php");
 }
-
-/* Select queries return a resultset */
-    $query = "SELECT  * from student ";
-  	$results = mysqli_query($link, $query);
-
-/* Add form data to the database
-    mysqli_close($link);
-
-*/
+$_SESSION["feedback-push"] = $_GET["q"];
 
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +15,7 @@ if (mysqli_connect_errno()) {
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<link href="stylesheet/style.css" rel="stylesheet">
-        <script>
+		<script>
             function radioValidate() {
                 var answer1 = document.getElementsByName("answer1");
                 var answer2 = document.getElementsByName("answer2");
@@ -44,26 +28,34 @@ if (mysqli_connect_errno()) {
                 var answer9 = document.getElementsByName("answer9");
                 var answer = [answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9]
                 var validate = false;
-                
+                var count = 0;
                 for (var i = 0; i < 9; i++) {
                     var j = 0;
+                    
                     while (!validate && j < answer[i].length) {
-                        if (answer[i][j].checked) validate = true;
+                        if (answer[i][j].checked) 
+                            count++;
                         j++;
                     }
-                    if (!validate) alert("You must answer all questions");
-                    return validate;
+                    
                 }
+                console.log(count);
+                if (count!=9) {
+                    alert("You must answer all questions");
+                    return false;
+                }
+                return true;
+                    
             }
         </script>
 	</head>
 	<body>
 		<div class="container text-center">
-			<div class="logout">
-                <a class="btn btn-info" href="logout.php">Logout</a>
-            </div>
-			<form action="feedbackValidation.php" method="post" id="question" onsubmit="return radioValidate()">
-				<h1 id="title">Teacher Feedback Survey</h1>
+			
+			<form action="feedback-validation.php" method="post" id="question"  onsubmit="return radioValidate()">
+				<h1 id="title">Teacher Feedback Survey
+				<a  href="logout.php" class="logout btn btn-default">Logout</a>
+				</h1>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						
@@ -281,7 +273,7 @@ if (mysqli_connect_errno()) {
 							<textarea rows="4" cols="10" class="form-control" name="comment" maxlength="250" form="question"></textarea>
 							<br />
 					
-							<input type="submit" name="submit" value="Submit">
+							<input type="submit" name="submit" value="Submit" >
 							</div>
 						</div>
 					</div>
@@ -291,4 +283,5 @@ if (mysqli_connect_errno()) {
 		</div>
 		
 	</body>
+</html>
 </html>

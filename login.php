@@ -18,6 +18,15 @@ session_start();
 	<div class="container text-center">
 		<h1 id="title">Please Login</h1>
 			<div id="group">
+			    <span style= "color:red">
+			        <?php
+			            if(isset($_SESSION['errormsg'])){
+			                echo $_SESSION['errormsg'] ; 
+                            unset($_SESSION['errormsg']);
+			            }
+			        ?>
+			        
+			    </span>
 				<form action="validation.php" method="post">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -33,7 +42,7 @@ session_start();
 					<br />
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-							<input type="submit" class="btn btn-default" >
+							<input type="submit" value = "Submit" class="btn btn-default" >
 						</div>
 					</div>
 				</form>
